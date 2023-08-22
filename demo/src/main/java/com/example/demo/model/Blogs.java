@@ -35,7 +35,7 @@ public class Blogs {
 
     @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<Favorates> favorates = new ArrayList<Favorates>();
+    private List<Favorites> favorates = new ArrayList<Favorites>();
 
 
 }
