@@ -42,4 +42,13 @@ public class CommentController {
     public ResponseEntity<Comments> delete(@PathVariable long id){
         return commentService.delete(id);
     }
+
+    @PutMapping("{comment_id}/blogs/{blog_id}")
+    public ResponseEntity<Comments> commentOnBlog(
+            @PathVariable long comment_id,
+            @PathVariable long blog_id
+    ){
+        return commentService.commentOnBlog(blog_id, comment_id);
+    }
+
 }

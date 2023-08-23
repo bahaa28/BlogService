@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/favorite")
+@RequestMapping("/api/v1/favorites")
 public class FavoriteController {
 
     @Autowired
@@ -41,5 +41,13 @@ public class FavoriteController {
     @DeleteMapping("{id}")
     public ResponseEntity<Favorites> delete(@PathVariable long id){
         return favoriteService.delete(id);
+    }
+
+    @PutMapping("{favorite_id}/blogs/{blog_id}")
+    public ResponseEntity<Favorites> favoriteOnBlog(
+            @PathVariable long favorite_id,
+            @PathVariable long blog_id
+    ){
+        return favoriteService.favoriteOnBlog(favorite_id, blog_id);
     }
 }
