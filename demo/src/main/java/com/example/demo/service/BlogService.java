@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.example.demo.model.UserEntity;
 
 import java.util.List;
 
@@ -16,6 +19,9 @@ public class BlogService {
 
     @Autowired
     private BlogRepository blogRepository;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     public List<Blogs> getAll(){
         return blogRepository.findAll();
@@ -55,6 +61,22 @@ public class BlogService {
 
         return new ResponseEntity<Blogs>(HttpStatus.NO_CONTENT);
 
+    }
+
+
+     public ResponseEntity<UserEntity> getTheAuthorOfTheBlog(long blog_id) throws ResourceNotFoundException{
+        Blogs blog = blogRepository.findById(blog_id).orElseThrow(() ->
+                new ResourceNotFoundException("blog does not exists with id: " + blog_id));
+
+        long user_id = blog.getUser_id();
+
+        String url = "http://localhost:8080/api/v1/users/id/" + user_id;
+        try{
+            ResponseEntity<UserEntity> response = restTemplate.getForEntity(url, UserEntity.class);
+            return response;
+        }catch (Exception ex){
+            throw new ResourceNotFoundException(ex.getMessage());
+        }
     }
 
 

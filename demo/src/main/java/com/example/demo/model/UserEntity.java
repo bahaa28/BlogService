@@ -1,36 +1,42 @@
 package com.example.demo.model;
 
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class UserEntity {
 
     private long id;
 
-   // @NotNull(message = "username must not be null")
-   // @NotEmpty(message = "username must not be empty")
+    @Column(name = "username")
+    @NotNull(message = "username must not be null")
+    @NotEmpty(message = "username must not be empty")
     private String username;
 
-   // @NotNull(message = "password must not be null")
-   // @NotEmpty(message = "password must not be empty")
+    @Column(name = "password")
+    @NotNull(message = "password must not be null")
+    @NotEmpty(message = "password must not be empty")
     private String password;
 
-   // @NotNull(message = "first name must not be null")
-   // @NotEmpty(message = "first name must not be empty")
+    @Column(name = "firstName")
+    @NotNull(message = "first name must not be null")
+    @NotEmpty(message = "first name must not be empty")
     private String firstName;
 
-   // @NotNull(message = "last name must not be null")
-   // @NotEmpty(message = "last name must not be empty")
+    @Column(name = "lastName")
+    @NotNull(message = "last name must not be null")
+    @NotEmpty(message = "last name must not be empty")
     private String lastName;
 
-   // @NotNull(message = "birth date must not be null")
+    @Column(name = "birthDate")
+    @NotNull(message = "birth date must not be null")
     private Date birthDate;
-
 }
-

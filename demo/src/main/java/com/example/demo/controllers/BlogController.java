@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.model.Blogs;
+import com.example.demo.model.UserEntity;
 import com.example.demo.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -42,4 +43,12 @@ public class BlogController {
     public ResponseEntity<Blogs> delete(@PathVariable long id){
         return blogService.delete(id);
     }
+
+
+    @GetMapping("{id}/user")
+    public ResponseEntity<UserEntity> getTheAuthorOfTheBlog(@PathVariable long id){
+        return blogService.getTheAuthorOfTheBlog(id);
+    }
+
+
 }
